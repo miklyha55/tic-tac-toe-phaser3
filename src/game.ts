@@ -1,13 +1,13 @@
 import * as Phaser from 'phaser';
 import GameScene from './scenes/GameScene';
 import LoaderScene from './scenes/LoaderScene';
-import { Resolution } from './constants';
+import { RESOLUTION } from './constants';
 
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: Resolution.width,
-    height: Resolution.height,
+    width: RESOLUTION.width,
+    height: RESOLUTION.height,
     scene: [
         LoaderScene,
         GameScene,

@@ -1,10 +1,13 @@
 import * as Phaser from 'phaser';
 import Factory from '../factory';
 import BaseScene from './BaseScene';
-import { Resolution } from '../constants';
+import { BaseGameObject, IROBaseJsonElementCfg } from '../interfaces';
+import GameObjectManager from '../managers/GameObjectManager';
+import { GAME_OBJECTS } from '../constants';
 
 export default class GameScene extends BaseScene
 {
+    gameObjectManager: GameObjectManager;
     constructor ()
     {
         super('GameScene');
@@ -12,29 +15,11 @@ export default class GameScene extends BaseScene
 
     protected override createSafe ()
     {
-        const libs: Phaser.GameObjects.Image = Factory.CreateImage(this, {
-            name: "libs",
-            size: {
-                width: 400,
-                height: 300,
-            },
-            position: {
-                x: Resolution.width / 2,
-                y: Resolution.height / 2,
-            }
-        });
+        const jsonArrayCfg: Array<IROBaseJsonElementCfg> = this.cache.json.get("gameScene.json");
+        this.gameObjectManager = new GameObjectManager(Factory.CreateFromJson(this, jsonArrayCfg));
 
-        const logo: Phaser.GameObjects.Image = Factory.CreateImage(this, {
-            name: "logo",
-            size: {
-                width: 400,
-                height: 70,
-            },
-            position: {
-                x: Resolution.width / 2,
-                y: Resolution.height / 2,
-            }
-        });
+        const logo: BaseGameObject = this.gameObjectManager.getGameObjectById(GAME_OBJECTS.Logo);
+        const libs: BaseGameObject =  this.gameObjectManager.getGameObjectById(GAME_OBJECTS.Libs);
 
         this.tweens.add({
             targets: logo,

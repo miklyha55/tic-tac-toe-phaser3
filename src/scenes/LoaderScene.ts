@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { ResourceType } from '../constants';
+import { RESOURSE_TYPE } from '../constants';
 import { Assets } from '../assets';
 import BaseScene from './BaseScene';
 
@@ -20,8 +20,11 @@ export default class LoaderScene extends BaseScene
     private loadResoures(callback) {
         Assets.forEach((element, index)=> {
             switch (element.type) {
-                case ResourceType.Image:
+                case RESOURSE_TYPE.Image:
                     this.load.image(element.name, element.path);
+                    break;
+                case RESOURSE_TYPE.Json:
+                    this.load.json(element.name, element.path);
                     break;
             }
             
