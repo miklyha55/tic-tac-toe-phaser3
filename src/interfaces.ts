@@ -26,7 +26,7 @@ export interface IROResolutionCfg {
 export interface IROBaseElementCfg {
     readonly name: string;
     readonly size: ISizeCfg;
-    readonly position: IVec2Cfg
+    readonly position?: IVec2Cfg
 }
 
 export interface IROSpriteCfg extends IROBaseElementCfg {
@@ -38,10 +38,11 @@ export interface IROContainerCfg extends IROBaseElementCfg {
 
 export interface IROBaseJsonElementCfg {
     readonly id: number;
-    readonly name: string;
     readonly type: string;
+    
+    readonly name: string;
     readonly size: ISizeCfg;
-    readonly position: IVec2Cfg
+    readonly position?: IVec2Cfg
     readonly angle?: number;
     readonly texture?: string;
 }

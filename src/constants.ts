@@ -16,6 +16,6 @@ export const RESOLUTION: IROResolutionCfg = {
 }
 
 export const enum GAME_OBJECTS {
-    Logo = 1,
-    Libs = 2,
+    Cross = 1,
+    Zero = 2,
 }

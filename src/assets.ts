@@ -2,13 +2,13 @@ import { IROResourceCfg } from "./interfaces";
 
 export const Assets: ReadonlyArray<IROResourceCfg> = [
     {
-        name: "logo",
-        path: "assets/images/logo.png",
+        name: "cross",
+        path: "assets/images/cross.png",
         type: "Image",
     },
     {
-        name: "libs",
-        path: "assets/images/libs.png",
+        name: "zero",
+        path: "assets/images/zero.png",
         type: "Image",
     },
     {

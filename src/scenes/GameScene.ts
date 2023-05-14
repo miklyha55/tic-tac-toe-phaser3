@@ -4,10 +4,13 @@ import BaseScene from './BaseScene';
 import { BaseGameObject, IROBaseJsonElementCfg } from '../interfaces';
 import GameObjectManager from '../managers/GameObjectManager';
 import { GAME_OBJECTS } from '../constants';
+import JsonObjectManager from '../managers/JsonObjectManager';
 
 export default class GameScene extends BaseScene
 {
     gameObjectManager: GameObjectManager;
+    jsonObjectManager: JsonObjectManager;
+
     constructor ()
     {
         super('GameScene');
@@ -16,27 +19,8 @@ export default class GameScene extends BaseScene
     protected override createSafe ()
     {
         const jsonArrayCfg: Array<IROBaseJsonElementCfg> = this.cache.json.get("gameScene.json");
-        this.gameObjectManager = new GameObjectManager(Factory.CreateFromJson(this, jsonArrayCfg));
 
-        const logo: BaseGameObject = this.gameObjectManager.getGameObjectById(GAME_OBJECTS.Logo);
-        const libs: BaseGameObject =  this.gameObjectManager.getGameObjectById(GAME_OBJECTS.Libs);
-
-        this.tweens.add({
-            targets: logo,
-            y: 350,
-            duration: 1500,
-            ease: 'Sine.inOut',
-            yoyo: true,
-            repeat: -1
-        })
-
-        this.tweens.add({
-            targets: libs,
-            y: 0,
-            duration: 1500,
-            ease: 'Sine.inOut',
-            yoyo: true,
-            repeat: -1
-        })
+        this.jsonObjectManager = new JsonObjectManager(jsonArrayCfg);
+        console.log(this.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Cross));
     }
 }

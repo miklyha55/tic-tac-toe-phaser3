@@ -10,15 +10,14 @@ export default class LoaderScene extends BaseScene
         super('LoaderScene');
     }
 
-    protected override preloadSafe ()
+    protected override async preloadSafe ()
     {
-        this.loadResoures(() => {
-            this.scene.start("GameScene");
-        });
+        await this.loadResoures();
+        this.scene.start("GameScene");
     }
 
-    private loadResoures(callback) {
-        Assets.forEach((element, index)=> {
+    private async loadResoures(): Promise<void> {
+        Assets.forEach((element)=> {
             switch (element.type) {
                 case RESOURSE_TYPE.Image:
                     this.load.image(element.name, element.path);
@@ -27,12 +26,10 @@ export default class LoaderScene extends BaseScene
                     this.load.json(element.name, element.path);
                     break;
             }
-            
-            this.load.once(Phaser.Loader.Events.COMPLETE, () => {
-                if (index === Assets.length - 1) {
-                    callback instanceof Function && callback();
-                }
-            });
+        });
+
+        return new Promise((resolve) => {
+            this.load.once(Phaser.Loader.Events.COMPLETE, resolve);
         });
     }
 }

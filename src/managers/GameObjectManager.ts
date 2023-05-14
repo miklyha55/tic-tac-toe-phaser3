@@ -4,8 +4,8 @@ export default class GameObjectManager
 {
     private readonly gameObjectMap: Map<number, BaseGameObject>;
 
-    constructor(map: Map<number, BaseGameObject>) {
-        this.gameObjectMap = map;
+    constructor(gameObjectMap: Map<number, BaseGameObject>) {
+        this.gameObjectMap = gameObjectMap;
     }
 
     getGameObjectById(id: number) {
