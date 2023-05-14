@@ -1,10 +1,9 @@
-import * as Phaser from 'phaser';
-import Factory from '../factory';
 import BaseScene from './BaseScene';
-import { BaseGameObject, IROBaseJsonElementCfg } from '../interfaces';
+import { IROBaseJsonElementCfg } from '../interfaces';
 import GameObjectManager from '../managers/GameObjectManager';
-import { GAME_OBJECTS } from '../constants';
 import JsonObjectManager from '../managers/JsonObjectManager';
+import GridFactory from '../grid/factory';
+import { IROGridCfg } from '../grid/interfaces';
 
 export default class GameScene extends BaseScene
 {
@@ -19,8 +18,9 @@ export default class GameScene extends BaseScene
     protected override createSafe ()
     {
         const jsonArrayCfg: Array<IROBaseJsonElementCfg> = this.cache.json.get("gameScene.json");
+        const gridCfg: IROGridCfg = this.cache.json.get("grid.json");
 
         this.jsonObjectManager = new JsonObjectManager(jsonArrayCfg);
-        console.log(this.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Cross));
+        GridFactory.CreateGrid(this, gridCfg);
     }
 }

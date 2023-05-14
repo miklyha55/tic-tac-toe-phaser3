@@ -16,4 +16,9 @@ export const Assets: ReadonlyArray<IROResourceCfg> = [
         path: "assets/json/gameScene.json",
         type: "Json",
     },
+    {
+        name: "grid.json",
+        path: "assets/json/grid.json",
+        type: "Json",
+    },
 ];

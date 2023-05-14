@@ -1,4 +1,4 @@
-import { BaseGameObject, IROBaseJsonElementCfg } from '../interfaces';
+import { IROBaseJsonElementCfg } from '../interfaces';
 
 export default class JsonObjectManager
 {
