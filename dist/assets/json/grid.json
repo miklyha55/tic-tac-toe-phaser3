@@ -1,0 +1,24 @@
+{
+    "position": {
+        "x": 0,
+        "y": 0
+    },
+    "sizeGrid": {
+        "width": 3,
+        "height": 3
+    },
+    "sizeCell": {
+        "width":  200,
+        "height":  200
+    },
+    "fill": {
+        "color": "0xfff000",
+        "alpha": 1
+    },
+    "border": {
+        "thickness": 4,
+        "color": "0xff0000",
+        "alpha": 1
+    },
+    "depth": 4
+}

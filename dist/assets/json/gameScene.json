@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "cross",
+        "type": "Image",
+        "size": {
+            "width": 200,
+            "height": 200
+        },
+        "scale": {
+            "x": 0.5,
+            "y": 0.5
+        }
+    },
+    {
+        "id": 2,
+        "name": "zero",
+        "type": "Image",
+        "size": {
+            "width": 200,
+            "height": 200
+        },
+        "scale": {
+            "x": 0.5,
+            "y": 0.5
+        }
+    }
+]
