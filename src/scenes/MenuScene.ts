@@ -24,7 +24,6 @@ export default class MenuScene extends BaseScene
 
         button.setInteractive(CONST_INTERACTIVE_ELEMENT)
         button.on(Input.Events.POINTER_DOWN, this.onPointerDown.bind(this));
-
     }
 
     private onPointerDown() {

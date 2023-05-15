@@ -142,15 +142,17 @@ export default class GameStateManager
         let countAi: number = 0;
 
         for (let row: number = 0; row < array.length; row++) {
-            if(!array[row][array.length - row - 1]) {
+            const col: number = array.length - row - 1;
+
+            if(!array[row][col]) {
                 continue;
             }
 
-            if(array[row][array.length - row - 1].type === GAME_OBJECT_STATE.Player) {
+            if(array[row][col].type === GAME_OBJECT_STATE.Player) {
                 countPlayer++;
             }
 
-            if(array[row][array.length - row - 1].type === GAME_OBJECT_STATE.AI) {
+            if(array[row][col].type === GAME_OBJECT_STATE.AI) {
                 countAi++;
             }
         }

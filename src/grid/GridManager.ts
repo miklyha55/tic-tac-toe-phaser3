@@ -17,7 +17,6 @@ export default class GridManager
     private readonly sceneGame: GameScene;
     private readonly duration: number;
     private readonly ease: string;
-    private readonly screenArray: Array<Array<GridCell>>;
 
     private counter: number;
     private gameOverCounter: number;
