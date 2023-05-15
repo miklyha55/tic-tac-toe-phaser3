@@ -23,9 +23,11 @@ export default class MenuScene extends BaseScene
             this.gameObjectManager .getGameObjectById(GAME_OBJECTS.Button) as GameObjects.Sprite;
 
         button.setInteractive(CONST_INTERACTIVE_ELEMENT)
-        button.on(Input.Events.POINTER_DOWN, () => {
-            this.scene.start("GameScene");
-        })
+        button.on(Input.Events.POINTER_DOWN, this.onPointerDown.bind(this));
 
+    }
+
+    private onPointerDown() {
+        this.scene.start("GameScene");
     }
 }
