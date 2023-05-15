@@ -17,8 +17,10 @@ export default class GridManager
     private readonly sceneGame: GameScene;
     private readonly duration: number;
     private readonly ease: string;
+    private readonly screenArray: Array<Array<GridCell>>;
 
     private counter: number;
+    private gameOverCounter: number;
 
     constructor(scene: BaseScene) {
         this.sceneGame = scene as GameScene;
@@ -32,6 +34,7 @@ export default class GridManager
         this.ease = "Power2";
 
         this.counter = 0;
+        this.gameOverCounter = 0;
 
         this.updateGrid();
     }
@@ -40,8 +43,20 @@ export default class GridManager
         this.counter++;
 
         if(this.counter < this.gridCfg.depth){
+            this.gameOverCounter = 0;
             this.updateGrid();
         } else {
+            this.sceneGame.gameStateManager.setGameState(GAME_STATE.GameOver);
+        }
+    }
+
+    incrementGameOverCounter() {
+        this.gameOverCounter++;
+    
+        const depth: number = this.counter * 2;
+        const count: number = (depth + this.sizeGrid.width) * (depth + this.sizeGrid.height);
+
+        if(this.gameOverCounter === count) {
             this.sceneGame.gameStateManager.setGameState(GAME_STATE.GameOver);
         }
     }

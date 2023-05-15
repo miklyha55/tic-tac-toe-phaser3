@@ -28,6 +28,8 @@ export default class GridCell
                 return;
             }
 
+            this.sceneGame.gridManager.incrementGameOverCounter();
+
             const crossCfg: IROBaseElementCfg = this.sceneGame.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Cross);
             const zeroCfg: IROBaseElementCfg = this.sceneGame.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Zero);
 
