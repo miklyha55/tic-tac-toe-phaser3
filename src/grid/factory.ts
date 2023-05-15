@@ -3,20 +3,51 @@ import Factory from "../factory";
 import { IVec2Cfg } from "../interfaces";
 import BaseScene from "../scenes/BaseScene";
 import { IROGridCfg } from "./interfaces";
+import GridCell from "./GridCell";
+import GameScene from "../scenes/GameScene";
+import { GAME_OBJECT_STATE } from "../constants";
 
 export default class GridFactory {
-    static CreateGrid(scene: BaseScene, gridCfg: IROGridCfg) {
-        for (let row: number = 0; row < gridCfg.sizeGrid.width; row++) {
-            for (let col: number = 0; col < gridCfg.sizeGrid.height; col++) {
-                this.CreateCell(scene, gridCfg, col, row);
+    static CreateGrid(scene: BaseScene) {
+        const array: Array<Array<GridCell>> = [];
+        const sceneGame: GameScene = scene as GameScene;
+
+        const gridWidth: number = sceneGame.gridCfg.sizeGrid.width;
+        const gridHeight: number = sceneGame.gridCfg.sizeGrid.height;
+        
+        const cellWidth: number = sceneGame.gridCfg.sizeCell.width;
+        const cellHeight: number = sceneGame.gridCfg.sizeCell.height;
+
+        const depth: number = sceneGame.gridCfg.depth;
+
+        const sizeWidth: number = gridWidth + depth * 2;
+        const sizeHeight: number = gridHeight + depth * 2;
+        const container: GameObjects.Container = Factory.CreateContainer(scene, {
+            name: "GridContainer",
+            size: {
+                width: sizeWidth * cellWidth,
+                height: sizeHeight * cellHeight,
+            },
+        })
+
+        for (let row: number = 0; row < sizeWidth; row++) {
+            const rowArray: Array<GridCell> = [];
+            for (let col: number = 0; col < sizeHeight; col++) {
+                const gridContainer: GameObjects.Container = this.CreateCell(scene, sceneGame.gridCfg, col, row);
+                    
+                rowArray.push(new GridCell(scene, gridContainer));
+                container.add(gridContainer);
             }
+            array.push(rowArray);
         }
+        
+        return {array, container};
     }
 
     static CreateCell(scene: BaseScene, gridCfg: IROGridCfg, col: number, row: number) {
         const position: IVec2Cfg = {
-            x: row * gridCfg.sizeCell.width,
-            y: col * gridCfg.sizeCell.height
+            x: (row * gridCfg.sizeCell.width) - gridCfg.sizeCell.width / 2,
+            y: (col * gridCfg.sizeCell.height) - gridCfg.sizeCell.height / 2,
         };
 
         const container: GameObjects.Container = Factory.CreateContainer(scene, {
@@ -29,8 +60,8 @@ export default class GridFactory {
         const rect: GameObjects.Graphics = Factory.CreateRect(scene, {
             name: `Rect_${position.x}_${position.y}`,
             position: {
-                x: thickness / 2,
-                y: thickness / 2,
+                x: gridCfg.sizeCell.width / 2 + thickness / 2,
+                y: gridCfg.sizeCell.height / 2 + thickness / 2,
             },
             size: {
                 width: gridCfg.sizeCell.width - thickness, 
@@ -48,5 +79,6 @@ export default class GridFactory {
         });
 
         container.add(rect);
+        return container;
     }
 }

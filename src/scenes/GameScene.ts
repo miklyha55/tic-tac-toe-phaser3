@@ -3,12 +3,20 @@ import { IROBaseJsonElementCfg } from '../interfaces';
 import GameObjectManager from '../managers/GameObjectManager';
 import JsonObjectManager from '../managers/JsonObjectManager';
 import GridFactory from '../grid/factory';
-import { IROGridCfg } from '../grid/interfaces';
+import { IROGridCfg, IROGridFactoryCfg } from '../grid/interfaces';
+import GridManager from '../grid/GridManager';
+import GameStateManager from '../managers/GameStateManager';
 
 export default class GameScene extends BaseScene
 {
     gameObjectManager: GameObjectManager;
     jsonObjectManager: JsonObjectManager;
+    gameStateManager: GameStateManager;
+
+    gridManager: GridManager;
+    gridCfg: IROGridCfg;
+    jsonArrayCfg: Array<IROBaseJsonElementCfg>;
+    gridFactoryCfg: IROGridFactoryCfg
 
     constructor ()
     {
@@ -17,10 +25,12 @@ export default class GameScene extends BaseScene
 
     protected override createSafe ()
     {
-        const jsonArrayCfg: Array<IROBaseJsonElementCfg> = this.cache.json.get("gameScene.json");
-        const gridCfg: IROGridCfg = this.cache.json.get("grid.json");
+        this.jsonArrayCfg = this.cache.json.get("gameScene.json");
+        this.gridCfg = this.cache.json.get("grid.json");
 
-        this.jsonObjectManager = new JsonObjectManager(jsonArrayCfg);
-        GridFactory.CreateGrid(this, gridCfg);
+        this.gridFactoryCfg = GridFactory.CreateGrid(this);
+        this.gameStateManager = new GameStateManager(this);
+        this.jsonObjectManager = new JsonObjectManager(this);
+        this.gridManager = new GridManager(this);
     }
 }

@@ -41,18 +41,20 @@ export default class Factory {
             spriteCfg.size.height,
             spriteCfg.name
         );
-        sprite.setPosition(spriteCfg.position.x, spriteCfg.position.y);
+        sprite.setPosition(spriteCfg.position?.x || 0, spriteCfg.position?.y || 0);
+        sprite.setScale(spriteCfg.scale?.x, spriteCfg.scale?.y);
 
         return sprite;
     }
 
     static CreateContainer(scene: BaseScene, containerCfg: IROContainerCfg) {
         const container: GameObjects.Container = scene.add.container(
-            containerCfg.position.x,
-            containerCfg.position.y
+            containerCfg.position?.x || 0,
+            containerCfg.position?.y || 0
         );
-        container.setSize(containerCfg.size.width, containerCfg.size.height);
         container.name = containerCfg.name;
+        container.setSize(containerCfg.size.width, containerCfg.size.height);
+        container.setScale(containerCfg.scale?.x, containerCfg.scale?.y);
 
         return container;
     }

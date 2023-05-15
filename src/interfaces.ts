@@ -27,6 +27,7 @@ export interface IROBaseElementCfg {
     readonly name: string;
     readonly size: ISizeCfg;
     readonly position?: IVec2Cfg
+    readonly scale?: IVec2Cfg
 }
 
 export interface IROSpriteCfg extends IROBaseElementCfg {
@@ -64,4 +65,8 @@ export interface IROBaseJsonElementCfg {
     readonly texture?: string;
     readonly border?: IRORectBorderCfg;
     readonly fill?: IRORectFillCfg;
+}
+
+export interface IInteractiveElement {
+    cursor: string;
 }
