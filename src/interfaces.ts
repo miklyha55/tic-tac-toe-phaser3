@@ -12,6 +12,10 @@ export interface ISizeCfg {
     height: number;
 }
 
+export interface IInteractiveElement {
+    cursor: string;
+}
+
 export interface IROResourceCfg {
     readonly name: string;
     readonly path: string;
@@ -65,8 +69,4 @@ export interface IROBaseJsonElementCfg {
     readonly texture?: string;
     readonly border?: IRORectBorderCfg;
     readonly fill?: IRORectFillCfg;
-}
-
-export interface IInteractiveElement {
-    cursor: string;
 }

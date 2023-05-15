@@ -12,6 +12,6 @@ export interface IROGridCfg {
 }
 
 export interface IROGridFactoryCfg {
-    array: Array<Array<GridCell>>;
-    container: GameObjects.Container;
+    readonly array: Array<Array<GridCell>>;
+    readonly container: GameObjects.Container;
 }
