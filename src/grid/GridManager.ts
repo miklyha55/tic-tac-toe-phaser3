@@ -42,7 +42,6 @@ export default class GridManager
         this.counter++;
 
         if(this.counter < this.gridCfg.depth){
-            this.gameOverCounter = 0;
             this.updateGrid();
         } else {
             this.sceneGame.gameStateManager.setGameState(GAME_STATE.GameOver);
