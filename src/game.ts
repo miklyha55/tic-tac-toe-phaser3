@@ -2,6 +2,7 @@ import * as Phaser from 'phaser';
 import GameScene from './scenes/GameScene';
 import LoaderScene from './scenes/LoaderScene';
 import { RESOLUTION } from './constants';
+import MenuScene from './scenes/MenuScene';
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -10,6 +11,7 @@ const config: Phaser.Types.Core.GameConfig = {
     height: RESOLUTION.height,
     scene: [
         LoaderScene,
+        MenuScene,
         GameScene,
     ],
     scale: {

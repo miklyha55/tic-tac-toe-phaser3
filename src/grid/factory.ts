@@ -5,7 +5,6 @@ import BaseScene from "../scenes/BaseScene";
 import { IROGridCfg } from "./interfaces";
 import GridCell from "./GridCell";
 import GameScene from "../scenes/GameScene";
-import { GAME_OBJECT_STATE } from "../constants";
 
 export default class GridFactory {
     static CreateGrid(scene: BaseScene) {

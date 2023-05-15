@@ -12,8 +12,23 @@ export const Assets: ReadonlyArray<IROResourceCfg> = [
         type: "Image",
     },
     {
+        name: "button",
+        path: "assets/images/button.png",
+        type: "Image",
+    },
+    {
+        name: "logo",
+        path: "assets/images/logo.png",
+        type: "Image",
+    },
+    {
         name: "gameScene.json",
         path: "assets/json/gameScene.json",
+        type: "Json",
+    },
+    {
+        name: "menuScene.json",
+        path: "assets/json/menuScene.json",
         type: "Json",
     },
     {

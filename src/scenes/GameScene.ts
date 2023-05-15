@@ -1,6 +1,5 @@
 import BaseScene from './BaseScene';
 import { IROBaseJsonElementCfg } from '../interfaces';
-import GameObjectManager from '../managers/GameObjectManager';
 import JsonObjectManager from '../managers/JsonObjectManager';
 import GridFactory from '../grid/factory';
 import { IROGridCfg, IROGridFactoryCfg } from '../grid/interfaces';
@@ -9,7 +8,6 @@ import GameStateManager from '../managers/GameStateManager';
 
 export default class GameScene extends BaseScene
 {
-    gameObjectManager: GameObjectManager;
     jsonObjectManager: JsonObjectManager;
     gameStateManager: GameStateManager;
 

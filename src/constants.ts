@@ -29,6 +29,8 @@ export const RESOLUTION: IROResolutionCfg = {
 export const enum GAME_OBJECTS {
     Cross = 1,
     Zero = 2,
+    Button = 3,
+    Logo = 4,
 }
 
 export const CONST_INTERACTIVE_ELEMENT: IInteractiveElement = {

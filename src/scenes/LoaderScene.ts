@@ -13,7 +13,7 @@ export default class LoaderScene extends BaseScene
     protected override async preloadSafe ()
     {
         await this.loadResoures();
-        this.scene.start("GameScene");
+        this.scene.start("MenuScene");
     }
 
     private async loadResoures(): Promise<void> {

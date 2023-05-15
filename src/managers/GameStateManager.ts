@@ -27,7 +27,7 @@ export default class GameStateManager
                 this.sceneGame.gridManager.incrementCounter();
                 break;
             case GAME_STATE.GameOver:
-                console.log("Complete!");
+                this.sceneGame.scene.start("MenuScene");
                 break;
         }
     }
