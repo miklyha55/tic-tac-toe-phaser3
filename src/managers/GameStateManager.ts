@@ -19,6 +19,10 @@ export default class GameStateManager
         this.gameObjectState = state;
     }
 
+    getGameObjectState() {
+        return this.gameObjectState;
+    }
+
     setGameState(state: number) {
         this.gameState = state;
 
@@ -30,10 +34,6 @@ export default class GameStateManager
                 this.sceneGame.scene.start("MenuScene");
                 break;
         }
-    }
-
-    getState() {
-        return this.gameObjectState;
     }
 
     checkVictory() {

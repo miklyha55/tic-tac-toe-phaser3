@@ -17,40 +17,43 @@ export default class GridCell
         this.container = container;
 
         this.type = 0;
-
         this.setEvents();
     }
 
     private setEvents() {
         this.container.setInteractive(CONST_INTERACTIVE_ELEMENT);
-        this.container.on(Input.Events.POINTER_DOWN, () => {
-            if(this.type !== GAME_OBJECT_STATE.None) {
-                return;
-            }
+        this.container.on(Input.Events.POINTER_DOWN, this.onPointerDown.bind(this));
+    }
 
-            this.sceneGame.gridManager.incrementGameOverCounter();
+    private onPointerDown() {
+        if(this.type !== GAME_OBJECT_STATE.None) {
+            return;
+        }
 
-            const crossCfg: IROBaseElementCfg = this.sceneGame.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Cross);
-            const zeroCfg: IROBaseElementCfg = this.sceneGame.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Zero);
+        this.sceneGame.gridManager.incrementGameOverCounter();
+        let sprite: GameObjects.Sprite;
 
-            let sprite: GameObjects.Sprite;
-
-            switch (this.sceneGame.gameStateManager.getState()) {
-                case GAME_OBJECT_STATE.Player:
-                    sprite = Factory.CreateSprite(this.sceneGame, crossCfg);
-                    this.sceneGame.gameStateManager.setGameObjectState(GAME_OBJECT_STATE.AI);
-                    this.type = GAME_OBJECT_STATE.Player;
-                    break;
-            
-                case GAME_OBJECT_STATE.AI:
-                    sprite = Factory.CreateSprite(this.sceneGame, zeroCfg);
-                    this.sceneGame.gameStateManager.setGameObjectState(GAME_OBJECT_STATE.Player);
-                    this.type = GAME_OBJECT_STATE.AI;
+        switch (this.sceneGame.gameStateManager.getGameObjectState()) {
+            case GAME_OBJECT_STATE.Player:
+                const crossCfg: IROBaseElementCfg =
+                    this.sceneGame.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Cross);
+    
+                sprite = Factory.CreateSprite(this.sceneGame, crossCfg);
+                this.sceneGame.gameStateManager.setGameObjectState(GAME_OBJECT_STATE.AI);
+                this.type = GAME_OBJECT_STATE.Player;
                 break;
-            }
-            
-            this.sceneGame.gameStateManager.checkVictory();
-            this.container.add(sprite);
-       });
+        
+            case GAME_OBJECT_STATE.AI:
+                const zeroCfg: IROBaseElementCfg =
+                    this.sceneGame.jsonObjectManager.getJsonObjectById(GAME_OBJECTS.Zero);
+
+                sprite = Factory.CreateSprite(this.sceneGame, zeroCfg);
+                this.sceneGame.gameStateManager.setGameObjectState(GAME_OBJECT_STATE.Player);
+                this.type = GAME_OBJECT_STATE.AI;
+            break;
+        }
+        
+        this.sceneGame.gameStateManager.checkVictory();
+        this.container.add(sprite);
     }
 }
