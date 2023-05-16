@@ -21,7 +21,6 @@ export default class AiManager
         
         const gridManager: GridManager = this.sceneGame.gridManager;
         const boardArray: Array<number | string> = this.sceneGame.gridManager.getOrigBoard();
-        console.log(boardArray);
         const bestMove: IMoveCfg =  this.miniMax(boardArray, GAME_OBJECT_STATE.AI);
 
         const zeroCfg: IROBaseElementCfg =
