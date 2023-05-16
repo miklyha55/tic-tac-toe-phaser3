@@ -1,5 +1,5 @@
 import { GameObjects } from "phaser";
-import { IRORectBorderCfg, IRORectFillCfg, ISizeCfg, IVec2Cfg } from "../interfaces";
+import { IRORectBorderCfg, IRORectFillCfg, ISizeCfg, IVec2Cfg } from "../../interfaces";
 import GridCell from "./GridCell";
 
 export interface IROGridCfg {
